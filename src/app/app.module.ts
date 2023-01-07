@@ -14,6 +14,9 @@ import {environment} from "../environments/environment.prod";
 import {DataTablesModule} from "angular-datatables";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PieComponent } from './components/pie/pie.component';
+import { RadarComponent } from './components/radar/radar.component';
+import { PieDiffComponent } from './components/pie-diff/pie-diff.component';
 
 interface NgxSpinnerConfig {
   type?: string;
@@ -32,7 +35,10 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MainComponent
+    MainComponent,
+    PieComponent,
+    RadarComponent,
+    PieDiffComponent
   ],
   imports: [
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),

@@ -26,6 +26,27 @@
         <button style="margin-top: 10px" class="btn btn-success">Search and analyze</button>
     </div>
   </div>
+  <br>
+  <div class="row" *ngIf="analyzerResponse">
+    <div class="col-md-4">
+      <app-pie [data]="dataForPie.textBlob" title="Text Blob result"></app-pie>
+    </div>
+    <div class="col-md-4">
+      <app-pie [data]="dataForPie.pattern" title="Pattern result"></app-pie>
+    </div>
+    <div class="col-md-4">
+      <app-pie [data]="dataForPie.vader" title="Vader result"></app-pie>
+    </div>
+  </div>
+  <div style="margin-top: 10px" class="row" *ngIf="analyzerResponse">
+    <div class="col-md-6">
+      <app-radar [data]="dataForRadar" [max]="form.max_results"></app-radar>
+    </div>
+    <div class="col-md-6">
+      <app-pie-diff [data]="dataForPie.general"></app-pie-diff>
+    </div>
+  </div>
+  <br>
   <div class="row">
     <div class="col-md-12" *ngIf="analyzerResponse">
       <table class="table table-bordered table-striped table-hover" datatable>
@@ -40,9 +61,9 @@
         <tbody>
         <tr *ngFor="let tweet of analyzerResponse.analyzed_tweets">
           <td>{{ tweet.original }}</td>
-          <td>{{ tweet.text_blob }}</td>
-          <td>{{ tweet.pattern }}</td>
-          <td>{{ tweet.vader }}</td>
+          <td><span class="badge rounded-pill {{getColor(tweet.text_blob)}}">{{tweet.text_blob}}</span></td>
+          <td><span class="badge rounded-pill {{getColor(tweet.pattern)}}">{{tweet.pattern}}</span></td>
+          <td><span class="badge rounded-pill {{getColor(tweet.vader)}}">{{tweet.vader}}</span></td>
         </tr>
         </tbody>
       </table>
