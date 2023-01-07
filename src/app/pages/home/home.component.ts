@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AnalyzerService} from "../../services/analyzer.service";
 import {AnalyzerResponse} from "../../dto/analyzer-response.dto";
+import {NgxSpinnerService} from "ngx-spinner";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   form: any = {
     query: null,
@@ -15,8 +17,10 @@ export class HomeComponent implements OnInit {
   }
 
   analyzerResponse!: AnalyzerResponse;
+  dtOptions: DataTables.Settings = {};
 
-  constructor(private analyzerService: AnalyzerService) {
+  constructor(private analyzerService: AnalyzerService,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -24,9 +28,14 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.analyzerService.analyze("Elon Musk", 10).subscribe(result => {
+    this.spinner.show();
+    this.analyzerService.analyze(this.form.query, this.form.max_results).subscribe(result => {
       this.analyzerResponse = result;
-      console.log(this.analyzerResponse);
+      this.spinner.hide();
     })
+  }
+
+  ngOnDestroy(): void {
+    //this.dtTrigger.unsubscribe();
   }
 }

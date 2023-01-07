@@ -11,6 +11,13 @@ import {FormsModule} from "@angular/forms";
 import { HomeComponent } from './pages/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import {environment} from "../environments/environment.prod";
+import {DataTablesModule} from "angular-datatables";
+import {NgxSpinnerModule} from "ngx-spinner";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+interface NgxSpinnerConfig {
+  type?: string;
+}
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/home', pathMatch: 'full' },
@@ -28,11 +35,14 @@ const routes: Routes = [
     MainComponent
   ],
   imports: [
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     BrowserModule,
     NgbModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
+    BrowserAnimationsModule,
+    DataTablesModule,
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(routes), FormsModule,

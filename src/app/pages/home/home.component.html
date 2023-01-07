@@ -1,8 +1,10 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="container-fluid">
 <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
   <div class="row">
     <div class="col-md-4 offset-2">
       <div class="form-floating mb-3">
-        <input required [ngModel]="form.query" type="text" class="form-control" id="query" name="query" placeholder="For example Elon Musk"  #query="ngModel">
+        <input required [(ngModel)]="form.query" type="text" class="form-control" id="query" name="query" placeholder="For example Elon Musk"  #query="ngModel">
         <label for="query">Search query</label>
         <div class="alert alert-danger" role="alert"
              *ngIf="query.errors && f.submitted">
@@ -21,7 +23,30 @@
       </div>
     </div>
     <div class="col-md-2">
-        <button style="margin-top: 4px" class="btn btn-success btn-lg">Search and analyze</button>
+        <button style="margin-top: 10px" class="btn btn-success">Search and analyze</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" *ngIf="analyzerResponse">
+      <table class="table table-bordered table-striped table-hover" datatable>
+        <thead>
+        <tr>
+          <th>Tweet</th>
+          <th>Text Blob</th>
+          <th>Pattern</th>
+          <th>Vader</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tweet of analyzerResponse.analyzed_tweets">
+          <td>{{ tweet.original }}</td>
+          <td>{{ tweet.text_blob }}</td>
+          <td>{{ tweet.pattern }}</td>
+          <td>{{ tweet.vader }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </form>
+</div>
