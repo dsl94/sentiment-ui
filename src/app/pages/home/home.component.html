@@ -1,0 +1,27 @@
+<form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <div class="row">
+    <div class="col-md-4 offset-2">
+      <div class="form-floating mb-3">
+        <input required [ngModel]="form.query" type="text" class="form-control" id="query" name="query" placeholder="For example Elon Musk"  #query="ngModel">
+        <label for="query">Search query</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="query.errors && f.submitted">
+          Query is required!
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-floating mb-3">
+        <input required type="number" [(ngModel)]="form.max_results" [defaultValue]="100" class="form-control" id="max_results" name="max_results" placeholder="100"  #max_results="ngModel">
+        <label for="max_results">Max results</label>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="max_results.errors && f.submitted">
+          Max results  is required!
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+        <button style="margin-top: 4px" class="btn btn-success btn-lg">Search and analyze</button>
+    </div>
+  </div>
+</form>

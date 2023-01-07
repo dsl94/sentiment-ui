@@ -3,16 +3,41 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgxEchartsModule} from "ngx-echarts";
+import {HttpClientModule} from "@angular/common/http";
+import {RouterModule, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import { HomeComponent } from './pages/home/home.component';
+import { MainComponent } from './components/main/main.component';
+import {environment} from "../environments/environment.prod";
 
+const routes: Routes = [
+  { path: '', redirectTo: 'app/home', pathMatch: 'full' },
+  { path: 'app', component: MainComponent, children: [
+      {
+        path: 'home', // child route path
+        component: HomeComponent, // child route component that the router renders
+      },
+    ] },
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    NgbModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule.forRoot(routes), FormsModule,
   ],
-  providers: [],
+  providers: [{ provide: 'BASE_API_URL', useValue: environment.apiUrl },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
