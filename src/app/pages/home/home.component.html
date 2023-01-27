@@ -28,6 +28,33 @@
   </div>
   <br>
   <div class="row" *ngIf="analyzerResponse">
+    <div class="col-md-3 offset-2">
+      <h4>Text blob</h4>
+      <p><b>Very negative:</b>{{analyzerResponse.sentiment_per_library.text_blob_very_negative}}</p>
+      <p><b>Negative:</b>{{analyzerResponse.sentiment_per_library.text_blob_negative}}</p>
+      <p><b>Neutral:</b>{{analyzerResponse.sentiment_per_library.text_blob_neutral}}</p>
+      <p><b>Positive:</b>{{analyzerResponse.sentiment_per_library.text_blob_positive}}</p>
+      <p><b>Very positive:</b>{{analyzerResponse.sentiment_per_library.text_blob_very_positive}}</p>
+    </div>
+    <div class="col-md-3">
+      <h4>Pattern</h4>
+      <p><b>Very negative:</b>{{analyzerResponse.sentiment_per_library.pattern_very_negative}}</p>
+      <p><b>Negative:</b>{{analyzerResponse.sentiment_per_library.pattern_negative}}</p>
+      <p><b>Neutral:</b>{{analyzerResponse.sentiment_per_library.pattern_neutral}}</p>
+      <p><b>Positive:</b>{{analyzerResponse.sentiment_per_library.pattern_positive}}</p>
+      <p><b>Very positive:</b>{{analyzerResponse.sentiment_per_library.pattern_very_positive}}</p>
+    </div>
+    <div class="col-md-3">
+      <h4>Vader</h4>
+      <p><b>Very negative:</b>{{analyzerResponse.sentiment_per_library.vader_very_negative}}</p>
+      <p><b>Negative:</b>{{analyzerResponse.sentiment_per_library.vader_negative}}</p>
+      <p><b>Neutral:</b>{{analyzerResponse.sentiment_per_library.vader_neutral}}</p>
+      <p><b>Positive:</b>{{analyzerResponse.sentiment_per_library.vader_positive}}</p>
+      <p><b>Very positive:</b>{{analyzerResponse.sentiment_per_library.vader_very_positive}}</p>
+    </div>
+  </div>
+  <br>
+  <div class="row" *ngIf="analyzerResponse">
     <div class="col-md-4">
       <app-pie [data]="dataForPie.textBlob" title="Text Blob result"></app-pie>
     </div>
