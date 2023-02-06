@@ -74,6 +74,25 @@
     </div>
   </div>
   <br>
+  <div class="row" *ngIf="analyzerResponse">
+    <div class="col-md-4 offset-3">
+      <h4>Text blob</h4>
+      <p><b>TP:</b>{{analyzerResponse.f_score[0].TP}}</p>
+      <p><b>TN:</b>{{analyzerResponse.f_score[0].TN}}</p>
+      <p><b>FP:</b>{{analyzerResponse.f_score[0].FP}}</p>
+      <p><b>FN:</b>{{analyzerResponse.f_score[0].FN}}</p>
+      <p><b>F Score:</b>{{analyzerResponse.f_score[0].F_SCORE}}</p>
+    </div>
+    <div class="col-md-4">
+      <h4>Pattern</h4>
+      <p><b>TP:</b>{{analyzerResponse.f_score[1].TP}}</p>
+      <p><b>TN:</b>{{analyzerResponse.f_score[1].TN}}</p>
+      <p><b>FP:</b>{{analyzerResponse.f_score[1].FP}}</p>
+      <p><b>FN:</b>{{analyzerResponse.f_score[1].FN}}</p>
+      <p><b>F Score:</b>{{analyzerResponse.f_score[1].F_SCORE}}</p>
+    </div>
+  </div>
+  <br>
   <div class="row">
     <div class="col-md-12" *ngIf="analyzerResponse">
       <table class="table table-bordered table-striped table-hover" datatable>
